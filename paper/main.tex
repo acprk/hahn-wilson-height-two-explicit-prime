@@ -1,0 +1,323 @@
+% INTERNAL DRAFT -- NOT FOR DISTRIBUTION, NOT TO BE POSTED OR UPLOADED.
+% Computations referenced as computations/... and verification/... (repository-relative).
+\documentclass[11pt]{amsart}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern}
+\usepackage{amsmath,amssymb,amsthm,mathtools}
+\usepackage[expansion=false]{microtype}
+\usepackage{booktabs,array,tabularx}
+\usepackage{xcolor}
+\usepackage[a4paper,margin=28mm]{geometry}
+\usepackage[backend=biber,style=alphabetic,maxbibnames=9,sorting=nyt]{biblatex}
+\addbibresource{refs.bib}
+\usepackage{hyperref}
+\hypersetup{colorlinks=true,linkcolor=blue!45!black,citecolor=blue!45!black,urlcolor=blue!45!black}
+\setlength{\emergencystretch}{2em}
+
+\numberwithin{equation}{section}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{mainthm}{Theorem}
+\renewcommand{\themainthm}{\Alph{mainthm}}
+\theoremstyle{definition}
+\newtheorem{definition}[theorem]{Definition}
+\theoremstyle{remark}
+\newtheorem{remark}[theorem]{Remark}
+
+\newcommand{\Z}{\mathbf Z}
+\newcommand{\F}{\mathbf F}
+\newcommand{\BP}{\mathrm{BP}}
+\DeclareMathOperator{\Thick}{Thick}
+\newcommand{\up}[1]{\texttt{#1}}
+
+\title[An explicit prime range for height-two Hahn--Wilson counterexamples]{An explicit prime range for the height-two\\ counterexamples to the Hahn--Wilson conjecture}
+\author{[AUTHOR NAME]}
+\date{October 9, 2026 (internal; not for distribution)}
+
+\begin{document}
+
+\begin{abstract}
+OpenAI's preprint \emph{Counterexamples to the Hahn--Wilson conjecture at
+height two} constructs, for every sufficiently large prime $p$, a
+connective $p$-complete spectrum of exact fp-type two outside
+$\Thick(\BP\langle2\rangle_p^\wedge)$. The paper states no numerical
+range. Its parameter conditions
+($M\ge81$, $p>16M^2$, $2\lfloor M/8\rfloor>p^{1/3}$) first hold at
+$p=17{,}073{,}437$. We show that, with one parameter chosen differently
+and the argument otherwise unchanged, the construction works for
+\emph{every prime $p\ge293$}, and that $293$ is the least prime this
+argument can reach. A sharper reading of one step adds the primes
+$199$ and $211$. This note changes no idea of the upstream proof and
+assumes its correctness. It is a re-tuning of constants, recorded
+because the upstream statement gives no explicit bound.
+\end{abstract}
+
+\maketitle
+
+\section{Introduction}
+
+The Hahn--Wilson conjecture \cite[Conjecture~1.1]{LP2026} asserts that
+a $p$-complete spectrum has fp-type at most $n$ if and only if it lies
+in $\Thick(\BP\langle n\rangle_p^\wedge)$. The preprint
+\cite{OAI-HW2} refutes it at $n=2$:
+
+\begin{quote}
+\emph{For every sufficiently large prime $p$ there is a connective
+$p$-complete spectrum $X$ of exact fp-type two with
+$X\notin\Thick(\BP\langle2\rangle_p^\wedge)$, and
+$L_2^fX\simeq L_2X$, $L_{T(2)}X\simeq L_{K(2)}X$}
+\cite[Theorem~1.1]{OAI-HW2}.
+\end{quote}
+
+The phrase ``sufficiently large'' enters through a single proposition,
+the construction of an operator with persistent defects
+\cite[Prop.~\up{op:operator}]{OAI-HW2}. All other sections need only
+$p>8$ (algebraicity \cite[Cor.~6.9]{Pstragowski2021}) or $p>5$. The
+operator is built under the parameter conditions
+\begin{equation}\label{eq:upstream-params}
+ M\ \text{odd},\qquad M\ge81,\qquad p>16M^2,\qquad 2\lfloor M/8\rfloor>p^{1/3}
+ \tag{\up{op:parameters}}
+\end{equation}
+together with $R_0=\lfloor M/8\rfloor$. The upstream text remarks that
+``no particular numerical lower bound for $p$ will be needed''. The
+least prime satisfying \eqref{eq:upstream-params} for some $M$ is
+$17{,}073{,}437$ (with $M=1033$).
+
+\begin{mainthm}\label{thm:A}
+Assume the arguments of \cite{OAI-HW2}. Then the conclusion of
+\cite[Theorem~1.1]{OAI-HW2} holds for every prime $p\ge293$.
+More precisely, Proposition~\up{op:operator} of \cite{OAI-HW2} holds,
+with its proof unchanged except for the substitutions listed in
+Table~\ref{tab:changes}, for every prime $p$ such that some odd
+$M\ge11$ satisfies
+\begin{equation}\label{eq:criterion}
+ \tag{$\ast$}
+ \frac{p+1}{2M}-\frac{p(M+1)}{p-1}>1
+ \qquad\text{and}\qquad (M-3)^3>p,
+\end{equation}
+and these are exactly the primes $p\ge293$.
+\end{mainthm}
+
+\begin{mainthm}\label{thm:B}
+Within the same argument, with $R_0=\lfloor M/8\rfloor$ replaced by a
+free $R_0$ but every other estimate as written, no prime below $293$
+can be reached. With the sharper reading of the cut argument in
+Remark~\ref{rem:sharp}, the reachable primes are exactly
+$\{199,211\}\cup\{p\ge293\}$.
+\end{mainthm}
+
+The improvement factor is $17{,}073{,}437/293\approx5.8\times10^4$.
+Removing only $M\ge81$ and $p>16M^2$ while keeping $R_0=\lfloor
+M/8\rfloor$ gives $38{,}113$. Most of the gain therefore comes from the
+choice of $R_0$.
+
+\subsection*{Scope}
+This note introduces no new idea. All mathematics is in
+\cite{OAI-HW2}, and our statements are conditional on its correctness,
+which we have not independently verified beyond the numerical steps
+below. The bound $293$ is limited by the correction estimate
+\eqref{eq:C1}, which is the first estimate of the upstream proof to
+fail when $p$ decreases. Going lower would require a different
+estimate for the coefficient-control lemma, not a different choice of
+parameters (Remark~\ref{rem:C1v}).
+
+\section{The numerical inputs of the operator construction}
+
+We use the notation of \cite[\S\up{op}]{OAI-HW2}: $q=p+1$,
+$\delta=(p-1)/2$, centers $d_i=\lfloor(i+\frac12)p/M\rfloor$
+($0\le i<M$), $s_0=(M-1)/2$,
+$I=\{s_0-R_0+1,\ldots,s_0+R_0\}$, $B_0=2R_0$, $\beta=\log_pB_0$, and
+$\kappa\le p/(p-1)$ from \cite[(\up{op:kappa})]{OAI-HW2}. Line numbers
+refer to \up{operator.tex} (in \up{build/sections/}) at the upstream commit cited
+in the bibliography. We list every place where $p$, $M$ or $R_0$
+enters an inequality. A full reading of all nine source files
+(\up{verification/}) found no other use of the size of $p$ besides
+$p>8$ and $p>5$.
+
+\begin{enumerate}
+\item[(C1)] \emph{Correction bound} (l.\,322--327). For a depth $b\ge
+X/(2M)$ and $m<(M+1)X$ one needs $qb-r'_m>X$. Since $r'_m\le\kappa m$,
+it suffices that
+\begin{equation}\label{eq:C1}
+ \frac{p+1}{2M}-\frac{p(M+1)}{p-1}>1.
+\end{equation}
+\item[(C2)] \emph{Exponent} (l.\,503). $\beta>1/3$, i.e.\ $(2R_0)^3>p$.
+It is used in the nonmembership theorem of \cite{OAI-HW2}\linebreak (\up{obs:nonmembership}) against
+an $O(N^{1/3})$ term whose exponent comes from $N_{p^s}\ge
+p^{3(s-1)}$ and does not depend on $p$.
+\item[(C3)] \emph{Interior central set} (l.\,507). $I$ meets neither
+$0$ nor $M-1$, i.e.\ $1\le R_0\le(M-3)/2$.
+\item[(C4)] \emph{Degree} (l.\,346 and the pivot rule). $M<p$.
+\item[(C5)] \emph{Same-cluster separation} (l.\,590--599). Lower
+portions of two labels in one cluster differ by at most $D X/p^2$,
+which must be $<X/q$. Upstream uses $D=p/4+3$, valid for
+$R_0=\lfloor M/8\rfloor$. Since $I\cup(I-1)$ has diameter $2R_0$ and
+the center gaps are $p/M\pm1$, the same reasoning gives
+$D=2R_0p/M+3$. The condition is $D(p+1)<p^2$.
+\item[(C6)] \emph{First band} (l.\,601--606). The $k_1=1$ band
+$X(1/M\pm2/p)$ must satisfy: deviation $1/p+D/p^2\le2/p$; separation
+$1/M+2/p<2/M-2/p$ from the $k_1=2$ band; lower end
+$X(1/M-2/p)\ge X/(2M)$. These amount to $D\le p$ and $p\ge4M$, with
+strict inequality for separation.
+\item[(C7)] \emph{Base stage} (l.\,546--562). $d=\lfloor p/M\rfloor$
+satisfies $qd<p^2$, $d\ge p/(2M)$ and $d\le\delta$. The centers are
+distinct and $d_{s_0}=\delta$.
+\item[(C8)] \emph{Cut argument} (l.\,680--697). For large $X$ a
+crossing pair has cluster index $i$ with $|i-s_0|\le1+3M/p+o(1)$.
+The text rounds this to ``within three places'', valid since $M<p$,
+and then needs $\{s_0-3,\ldots,s_0+3\}\subset I$, i.e.\ $R_0\ge4$.
+The counting argument (l.\,700--721) needs a center digit $<\delta$ in
+$d(I)$ and one $>\delta$ in $d(I-1)$, i.e.\ $R_0\ge2$.
+\item[(C0)] \emph{Global.} $p>8$ (comparison and transfer sections),
+$p>5$ (geometry and completion sections).
+\end{enumerate}
+
+\begin{lemma}\label{lem:auto}
+Let $M\ge5$ be odd, $1\le R_0\le(M-3)/2$, and $p>4M$ prime. Then
+\textup{(C0)}, \textup{(C3)}--\textup{(C7)} hold.
+\end{lemma}
+
+\begin{proof}
+(C0), (C3), (C4) are immediate. For (C5) and (C6), $2R_0\le M-3$ gives
+$D\le p-3p/M+3\le p$. Then $D(p+1)\le p^2+4p+3-3p(p+1)/M<p^2$, because
+$M<p/4<3p(p+1)/(4p+3)$. Separation and the lower end are equivalent
+to $p>4M$ and $p\ge4M$. For (C7), $d\ge4$ and $d\ge p/M-1\ge p/(2M)$
+since $p\ge2M$. Next $qd\le(p+1)p/M<p^2$, and $d\le p/5<\delta$.
+Consecutive centers differ by at least $\lfloor p/M\rfloor\ge1$, and
+$d_{s_0}=\lfloor p/2\rfloor=\delta$.
+\end{proof}
+
+\begin{proposition}\label{prop:reduce}
+Proposition~\up{op:operator} of \cite{OAI-HW2}, with the substitutions
+of Table~\ref{tab:changes}, holds at a prime $p$ whenever there is an
+odd $M$ with $R_0=(M-3)/2\ge4$ satisfying \eqref{eq:criterion}.
+\end{proposition}
+
+\begin{proof}
+Condition \eqref{eq:C1} gives $(p+1)/(2M)>M+2$, hence $p>2M(M+2)-1>4M$.
+Lemma~\ref{lem:auto} gives (C0) and (C3)--(C7). (C1) is
+\eqref{eq:C1}; (C2) is $(M-3)^3>p$; (C8) is $R_0\ge4$. In the proof
+of \cite[Prop.~\up{op:operator}]{OAI-HW2}, \eqref{eq:upstream-params}
+is used only through (C1)--(C8). The coefficient-control lemma is used
+only at depths $b\ge X/(2M)$, which (C6) and (C7) guarantee. The
+upstream argument therefore goes through verbatim.
+\end{proof}
+
+\section{Which primes satisfy the criterion}
+
+Write $f(p,M)=\frac{p+1}{2M}-\frac{p(M+1)}{p-1}$. For fixed $M$ it is
+increasing in $p$, and for fixed $p$ it is decreasing in $M$.
+
+\begin{lemma}\label{lem:small}
+Every prime $293\le p<1000$ satisfies \eqref{eq:criterion}.
+\end{lemma}
+
+\begin{proof}
+For $293\le p<512$ take $M=11$. Then $8^3=512>p$, and
+$f(p,11)\ge f(293,11)=1+\tfrac{259}{803}>1$. For $397\le p<1000$ take
+$M=13$. Then $10^3=1000>p$, and $f(397,13)=1.272\ldots>1$.
+\end{proof}
+
+\begin{lemma}\label{lem:tail}
+Every prime $p\ge1000$ satisfies \eqref{eq:criterion}.
+\end{lemma}
+
+\begin{proof}
+Let $t=p^{1/3}\ge10$, let $e$ be the least even integer with $e^3>p$,
+and put $M=e+3$. Then $e\le t+2$, so $13\le M\le t+5\le\frac32t$,
+and $R_0=e/2\ge5$. Moreover
+\[
+ f(p,M)\ \ge\ \frac{t^3}{3t}-\frac{1000}{999}(t+6)
+ \ \ge\ \frac{t^2}{3}-1.001\,t-6.01,
+\]
+which is $>1$ at $t=10$ and increasing for $t\ge10$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:A}]
+Combine Proposition~\ref{prop:reduce} with
+Lemmas~\ref{lem:small} and~\ref{lem:tail}. That no prime below $293$
+satisfies \eqref{eq:criterion} is part of Theorem~\ref{thm:B}. The
+remainder of the proof of \cite[Theorem~1.1]{OAI-HW2}
+(\S\up{consequences}) uses only Proposition~\up{op:operator} and
+$p>8$.
+\end{proof}
+
+\begin{proof}[Proof of Theorem~\ref{thm:B}]
+With every estimate as written, (C8) forces $R_0\ge4$, so (C3) forces
+$M\ge11$. If $M\ge11$ and $p\le283$, then
+$f(p,M)\le f(283,11)=0.866\ldots<1$, so (C1) fails. The sharpened
+variant is treated in Remark~\ref{rem:sharp}.
+\end{proof}
+
+\begin{remark}[Sharper cut argument]\label{rem:sharp}
+In (C8) the bound $|i-s_0|\le1+3M/p+o(1)$ is $<2$ whenever $3M<p$. By
+(C6) this holds, so $|i-s_0|\le1$, and $R_0\ge2$ suffices for both
+uses in (C8). The criterion becomes: some odd $M\ge7$ satisfies
+\eqref{eq:criterion}. For $M=7$, \eqref{eq:C1} needs
+$p>2M(M+2)-1=125$, which is incompatible with $4^3>p$. For $M=9$ one
+needs $199\le p<216$: indeed $f(197,9)=0.949\ldots$ and
+$f(199,9)=1.060\ldots$. For $M=11$ one needs $p\ge293$ as before. The
+reachable set is therefore $\{199,211\}\cup\{p\ge293\}$, which is not
+upward closed: the fourteen primes $223,\ldots,283$ are not reached.
+\end{remark}
+
+\begin{remark}[Beyond the correction estimate]\label{rem:C1v}
+Estimate \eqref{eq:C1} uses the crude depth bound $b\ge X/(2M)$. With
+the exact first-band depth $b\ge X(1/M-2/p)$, the review scripts in
+\up{verification/scripts/} find that the condition first holds at
+$157$ (with $R_0\ge4$) and at $109$ (with $R_0\ge2$). Using this
+requires restating the hypothesis of
+\cite[Lemma~\up{op:coefficient-control}]{OAI-HW2} and the base-stage
+step (l.\,312 and l.\,551). We have not written this out, and we make
+no claim about these primes.
+\end{remark}
+
+\section{Changes to the upstream text}
+
+\begin{table}[!htbp]
+\centering
+\small
+\begin{tabularx}{\textwidth}{@{}>{\raggedright\arraybackslash}p{0.36\textwidth} X@{}}
+\toprule
+Location (\up{operator.tex}) & Change \\
+\midrule
+l.\,265--268 (\up{op:parameters}) & Replace by: $M$ odd, $4\le R_0\le(M-3)/2$, \eqref{eq:C1} and $(2R_0)^3>p$. \\
+l.\,269--273 & Replace ``no particular numerical lower bound'' by the range $p\ge293$ (Theorem~\ref{thm:A}). \\
+l.\,324 & Cite \eqref{eq:C1} directly instead of deriving it from \eqref{eq:upstream-params}. \\
+l.\,500 & $R_0=\lfloor M/8\rfloor$ $\to$ $R_0$ as in the new \up{op:parameters}. \\
+l.\,503 & Justify $\beta>1/3$ by $(2R_0)^3>p$. \\
+l.\,592 & $(p/4+3)X/p^2$ $\to$ $(2R_0p/M+3)X/p^2$. \\
+l.\,601 & ``The bounds on $p$'' $\to$ ``The bound $p>4M$ (a consequence of \eqref{eq:C1})''. \\
+l.\,694 & ``since $M\ge81$'' $\to$ ``since $R_0\ge4$''. \\
+\midrule
+\up{main.tex} l.\,57, 115, 129, 197--198;\newline \up{consequences.tex} l.\,14, 172--173, 187 & Optional: ``sufficiently large prime'' $\to$ ``prime $p\ge293$''. \\
+\bottomrule
+\end{tabularx}
+\caption{Every change needed for Theorem~\ref{thm:A}.}
+\label{tab:changes}
+\end{table}
+
+\section{Computations and verification}
+
+\up{computations/pmin.py} checks (C0)--(C8) in exact rational
+arithmetic for each prime and each pair $(M,R_0)$, without using
+Lemma~\ref{lem:auto}. It confirms:
+\begin{itemize}
+\item the minimum $293$ with witness $(M,R_0)=(11,4)$;
+\item that no prime below $293$ admits any $(M,R_0)$;
+\item every prime in $[293,1000)$, plus spot checks up to $10^{12}$;
+\item the variant set $\{199,211\}\cup[293,1000)$;
+\item the upstream value $17{,}073{,}437$ as a positive control.
+\end{itemize}
+An independent reviewer (an AI agent that did not write this note)
+read all nine upstream source files line by line, reimplemented the
+conditions separately (\up{verification/scripts/}), and reached the
+same values. It also checked upward closure exactly up to
+$2\cdot10^5$ and in closed form up to $2\cdot10^7$. Its report is
+\up{verification/adversarial-review.md}.
+
+\printbibliography
+
+\end{document}

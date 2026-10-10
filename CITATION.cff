@@ -1,0 +1,34 @@
+cff-version: 1.2.0
+message: >-
+  If you use this note or its computations, please cite it as below.
+  Please also cite the OpenAI preprint listed in UPSTREAM.md.
+type: software
+title: 'An explicit prime range for the height-two counterexamples to the Hahn-Wilson conjecture'
+version: 0.1.0
+date-released: '2026-10-09'
+authors:
+  - name: '[AUTHOR NAME]'
+license: Apache-2.0
+abstract: >-
+  OpenAI's preprint constructs counterexamples to the Hahn-Wilson conjecture at
+  height two for every sufficiently large prime p. Its parameter conditions
+  first hold at p = 17,073,437. Choosing one parameter differently, with the
+  argument otherwise unchanged, makes the construction work for every prime
+  p >= 293, and 293 is the least prime this argument can reach (199 and 211
+  are added by a sharper reading of one step). This is a re-tuning of constants
+  with no new idea; it is conditional on the correctness of the upstream
+  preprint. Found and checked by Claude (Anthropic) agents under the
+  repository owner's direction. No human peer review has taken place and
+  nothing is formalized in Lean; no historical-priority claim is made.
+keywords:
+  - Hahn-Wilson conjecture
+  - chromatic homotopy theory
+  - truncated Brown-Peterson spectra
+  - explicit bounds
+references:
+  - type: article
+    title: 'Counterexamples to the Hahn-Wilson conjecture at height two'
+    authors:
+      - name: OpenAI
+    repository-code: 'https://github.com/openai/math'
+    commit: 08fcd618213aa43b0fcaff4526a8a48d66d02e55

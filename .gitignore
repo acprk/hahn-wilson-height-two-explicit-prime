@@ -1,0 +1,13 @@
+*.sage.py
+__pycache__/
+*.sobj
+*.aux
+*.log
+*.out
+*.bbl
+*.blg
+*.bcf
+*.run.xml
+*.fls
+*.fdb_latexmk
+*.toc
